@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>House Price Prediction</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Optional: Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>House Price Predictor</h1>
+            <p>Enter your house details to get an estimated market price</p>
+        </header>
+
+        <main class="form-section">
+            <form method="post" class="prediction-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="OverallQual">Overall Quality (1–10)</label>
+                        <input
+                            type="number"
+                            id="OverallQual"
+                            name="OverallQual"
+                            min="1"
+                            max="10"
+                            placeholder="e.g. 7"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="GrLivArea">Above Ground Living Area (sqft)</label>
+                        <input
+                            type="number"
+                            id="GrLivArea"
+                            name="GrLivArea"
+                            min="300"
+                            placeholder="e.g. 1800"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="TotalBsmtSF">Total Basement Area (sqft)</label>
+                        <input
+                            type="number"
+                            id="TotalBsmtSF"
+                            name="TotalBsmtSF"
+                            min="0"
+                            placeholder="e.g. 850"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="GarageCars">Garage Capacity (cars)</label>
+                        <input
+                            type="number"
+                            id="GarageCars"
+                            name="GarageCars"
+                            min="0"
+                            max="4"
+                            placeholder="e.g. 2"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="YearBuilt">Year Built</label>
+                        <input
+                            type="number"
+                            id="YearBuilt"
+                            name="YearBuilt"
+                            min="1900"
+                            max="2025"
+                            placeholder="e.g. 2005"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="Neighborhood">Neighborhood</label>
+                        <input
+                            type="text"
+                            id="Neighborhood"
+                            name="Neighborhood"
+                            placeholder="e.g. Edwards, NAmes, OldTown..."
+                            required
+                        >
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    Predict Price
+                </button>
+            </form>
+
+            {% if prediction %}
+                <div class="result-card">
+                    <h3>Estimated House Price</h3>
+                    <div class="price-display">
+                        ₦{{ prediction | round(0) | int | string | replace(',', ',') }}
+                    </div>
+                    <p class="result-note">This is an estimated value based on the provided features.</p>
+                </div>
+            {% endif %}
+        </main>
+
+        <footer>
+            <p>© 2026 House Price Prediction System</p>
+        </footer>
+    </div>
+</body>
+</html>
